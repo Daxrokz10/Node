@@ -43,6 +43,29 @@
                     </div>
                 </div>
 
+                <% if (users.length > 0) { %>
+                <div class="mt-4">
+                    <h3>Registered Users</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Email</th>
+                                <th>Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach((user, idx) => { %>
+                            <tr>
+                                <td><%= idx + 1 %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.password %></td>
+                            </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } %>
 
             </main>
             <footer>

@@ -9,15 +9,15 @@ const PORT = 9696;
 app.set('view engine','ejs')
 app.use(express.urlencoded({extended:true}));
 app.get('/',(req,res)=>{
-    return res.render('index.ejs');
-})
+    return res.render('index.ejs', { users });
+});
 
 app.post('/signup',(req,res)=>{
     let data = {
         email : req.body.email,
         password : req.body.password
     };
-    console.log(data);
+    users.push(data);
     return res.redirect('/');
 })
 
