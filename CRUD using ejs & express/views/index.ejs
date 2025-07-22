@@ -20,18 +20,18 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-6 mx-auto">
-                            <form method="post" action="/signup">
+                            <form method="post" action="<%= userToEdit ? '/user/edit/' + userToEdit.id : '/' %>">
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                                     <input name="email" type="email" class="form-control" id="exampleInputEmail1"
-                                        aria-describedby="emailHelp">
+                                        aria-describedby="emailHelp" value="<%= userToEdit ? userToEdit.email : '' %>">
                                     <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Password</label>
                                     <input name="password" type="password" class="form-control"
-                                        id="exampleInputPassword1">
+                                        id="exampleInputPassword1" value="<%= userToEdit ? userToEdit.password : '' %>">
                                 </div>
                                 <div class="mb-3 form-check">
                                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -43,29 +43,7 @@
                     </div>
                 </div>
 
-                <% if (users.length > 0) { %>
-                <div class="mt-4">
-                    <h3>Registered Users</h3>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Email</th>
-                                <th>Password</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% users.forEach((user, idx) => { %>
-                            <tr>
-                                <td><%= idx + 1 %></td>
-                                <td><%= user.email %></td>
-                                <td><%= user.password %></td>
-                            </tr>
-                            <% }) %>
-                        </tbody>
-                    </table>
-                </div>
-                <% } %>
+                <%- include('table.ejs')%>
 
             </main>
             <footer>
