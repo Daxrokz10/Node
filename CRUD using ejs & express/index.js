@@ -10,6 +10,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.render('index.ejs', { users, userToEdit: null });
 });
+app.get('/data',(req,res)=>{
+    res.render('data.ejs',{users,userToEdit:null});
+})
 
 app.post('/', (req, res) => {
     users.push({ ...req.body, id: Date.now() });
