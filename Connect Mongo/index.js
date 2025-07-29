@@ -12,7 +12,7 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
 
-const Employee = require('./models/Employee');
+const Employee = require('./models/employee');
 
 // Create
 app.post('/add', async (req, res) => {
