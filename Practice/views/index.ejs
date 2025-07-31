@@ -36,7 +36,7 @@
                     <thead>
                         <tr>
                             <th>
-                                id
+                                #
                             </th>
                             <th>
                                 Email
@@ -44,20 +44,31 @@
                             <th>
                                 Password
                             </th>
+                            <th>
+                                Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% practices.forEach(practice=> {
-                            const {_id,email,password} = practice;%>
+                        <% employees.forEach((employee,index)=> {
+                            const {_id,email,password} = employee;%>
                             <tr>
                                 <td>
-                                    <%= _id %>
+                                    <%= index+1 %>
                                 </td>
                                 <td>
                                     <%= email %>
                                 </td>
                                 <td>
                                     <%= password %>
+                                </td>
+                                <td class="d-flex">
+                                    <form action="/employee/delete/<%= _id %>" method="post">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                    <form action="/employee/edit/<%= _id %>" method="post">
+                                        <button class="btn btn-warning" type="submit">Edit</button>
+                                    </form>
                                 </td>
                             </tr>
                             <%});%>

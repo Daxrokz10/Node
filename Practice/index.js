@@ -6,18 +6,36 @@ app.set('view engine','ejs');
 app.use(express.urlencoded());
 
 const db = require('./config/db')
-const Practice = require('./models/practice')
+const Employee = require('./models/practice')
 
 app.get('/', async (req,res)=>{
-    const all = await Practice.find();
-    res.render('index',{practices: all});
+    const all = await Employee.find();
+    res.render('index',{employees: all});
 });
 
 app.post('/add',async(req,res)=>{
-    const data = new Practice(req.body);
+    const data = new Employee(req.body);
     await data.save();
     res.redirect('/');
+});
+
+app.post('/employee/delete/:id',async (req,res)=>{
+    const {id} = req.params;
+    console.log(id);
+    await Employee.findByIdAndDelete(id);
+    return res.redirect('/');
 })
+app.post('/employee/edit/:id',async (req,res)=>{
+    const {id} = req.params;
+    let editEmployee = await Employee.findById(id);
+    return res.render('edit',{editEmployee});
+});
+app.post('/edit',(req,res)=>{
+    const {id} = req.params;
+    const data = Employee.findByIdAndUpdate(id);
+    return res.redirect('index');
+})
+
 
 app.listen(port,(err)=>{
     if(err){
