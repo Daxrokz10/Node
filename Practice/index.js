@@ -30,11 +30,17 @@ app.post('/employee/edit/:id',async (req,res)=>{
     let editEmployee = await Employee.findById(id);
     return res.render('edit',{editEmployee});
 });
-app.post('/edit',(req,res)=>{
-    const {id} = req.params;
-    const data = Employee.findByIdAndUpdate(id);
-    return res.redirect('index');
-})
+app.post('/editedData/:id', (req, res) => {
+    const { id } = req.params;
+    const { email, password } = req.body;
+
+    Employee.findByIdAndUpdate(id, { email, password }, { new: true })
+        .then(() => res.redirect('/'))
+        .catch((err) => {
+            console.error('Error updating employee:', err);
+            res.status(500).send('Error updating employee');
+        });
+});
 
 
 app.listen(port,(err)=>{
@@ -44,4 +50,4 @@ app.listen(port,(err)=>{
     else{
         console.log('Server deployed on http://localhost:3000');
     }
-})
+});
