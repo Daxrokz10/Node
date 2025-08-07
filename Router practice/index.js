@@ -6,7 +6,11 @@ app.set('view engine','ejs');
 
 app.use(express.urlencoded({extended:true}));
 
-app.get('/',require('./routers'));
+const db = require('./config/db');
+const Product = require('./models/productSchema');
+
+app.use('/',require('./routers'))
+app.use('/products',require('./routers'))
 
 app.listen(port,(err)=>{
     if(!err){
