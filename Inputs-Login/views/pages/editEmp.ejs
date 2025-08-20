@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+             <%- include('../partials/header')%>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row mt-5">
+                    <div class="col-md-6 mx-auto">
+                        <% let {id,fname,lname,age,city,gender,hobby,department,salary} = editEmp; %>
+                        <h2>Edit Employee</h2>
+                        <form action="/employee/edit/<%= id%>" method="post">
+                            <div class="mb-3">
+                                <label for="fname">First Name: </label>
+                                <input class="form-control" type="text" value="<%= fname %>" name="fname" id="fname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lname">Last Name: </label>
+                                <input class="form-control" type="text" value="<%= lname %>" name="lname" id="lname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="age">Age: </label>
+                                <input class="form-control" type="number" value="<%= age %>" name="age" id="age">
+                            </div>
+                            <div class="mb-3">
+                                <% let cities = ['Navsari', 'Surat', 'Bardoli', 'Vadodara', 'Bilimora']%>
+                                <label for="city">City : </label>
+                                <select name="city" id="city">
+                                    <option value="" selected disabled>--- select city ---</option>
+                                <% cities.map((value) => { %>
+
+                                    <option value="<%= city %>" <%= (value == city ? "selected" : "")%>>
+                                        <%= city%>
+                                    </option>
+                                <% }) %>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>Gender: </label>
+
+                                <input type="radio" name="gender" id="male" value="Male" <% if(gender == 'Male'){ %> checked <% } %> >
+                                
+                                <label for="male">Male</label>
+                                
+                                <input type="radio" name="gender" id="female" value="Female" <% if(gender == 'Female'){ %> checked <% } %> >
+                                
+                                <label for="female">Female</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="hobby">Hobyy:  </label>
+                                <input type="checkbox" name="hobby" id="reading" value="Reading" <% if(editEmp.hobby && editEmp.hobby.includes('Reading')) { %> checked <% } %> > Reading
+                                <input type="checkbox" name="hobby" id="dancing" value="Dancing" <% if(editEmp.hobby && editEmp.hobby.includes('Dancing')) { %> checked <% } %>> Dancing
+                                <input type="checkbox" name="hobby" id="cricket" value="Cricket" <% if(editEmp.hobby && editEmp.hobby.includes('Cricket')) { %> checked <% } %>> Cricket
+                                <input type="checkbox" name="hobby" id="coding" value="Coding" <% if(editEmp.hobby && editEmp.hobby.includes('Coding')) { %> checked <% } %>> Coding
+                            </div>
+                            <div class="mb-3">
+                                <label for="department">Department: </label>
+                                <input class="form-control" type="text" value="<%= department %>" name="department" id="department">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="salary">Salary: </label>
+                                <input class="form-control" type="number" value="<%= salary %>" name="salary" id="salary">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Update Employee</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
