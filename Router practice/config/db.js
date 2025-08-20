@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.mongoose.connect('mongodb+srv://dakshgagnani:sainath96@products.jcrhxnb.mongodb.net/',{
+const db = mongoose.mongoose.connect('mongodb+srv://dakshgagnani:sainath96@products.jcrhxnb.mongodb.net/product',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(()=>{
@@ -8,4 +8,6 @@ mongoose.mongoose.connect('mongodb+srv://dakshgagnani:sainath96@products.jcrhxnb
     console.log("Database could not be connected");
     console.error(err);
 });
+
+
 
