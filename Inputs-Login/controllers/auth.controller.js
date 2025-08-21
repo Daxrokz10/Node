@@ -10,7 +10,7 @@ exports.loginHandle = async (req,res)=>{
         let {username,password} = req.body;
         let existing = await User.findOne({username})
         if(existing && await bcrypt.compare(password,existing.password)){
-           return res.redirect('/employee');
+           return res.cookie('user',existing.id).redirect('/employee');
         }else{
             console.log('User not found');
            return res.redirect('/');
@@ -41,4 +41,8 @@ exports.signupHandle = async (req,res)=>{
         console.log("error creating new user");
         console.log(error.message);
     }
+}
+
+exports.logutHandle = (req,res)=>{
+    return res.clearCookie('user').redirect('/');
 }

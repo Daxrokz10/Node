@@ -3,7 +3,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 8081;
 const db = require('./config/db')
+const cookieParser = require('cookie-parser');
 require('dotenv').config();
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));

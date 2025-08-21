@@ -31,10 +31,10 @@ exports.showData = async (req, res) => {
 exports.deleteEmployee = async (req,res) => {
     try {
         await Employee.findByIdAndDelete(req.params.id);
-        return res.redirect('/showData');
+        return res.redirect('/employee/showData');
     } catch (error) {
         console.log(error.message);
-        return res.redirect('/showData');
+        return res.redirect('/employee/showData');
     }
 }
 
@@ -44,16 +44,16 @@ exports.editEmployee = async (req,res) => {
         return res.render('pages/editEmp', { editEmp });
     } catch (error) {
         console.log(error.message);
-        return res.redirect('/showData');
+        return res.redirect('/employee/showData');
     }
 }
 
 exports.updateEmp = async (req,res) => {
     try {
         await Employee.findByIdAndUpdate(req.params.id, req.body);
-        return res.redirect('/showData');
+        return res.redirect('/employee/showData');
     } catch (error) {
         console.log(error.message);
-        return res.redirect('/showData');
+        return res.redirect('/employee/showData');
     }
 }
